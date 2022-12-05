@@ -1,36 +1,31 @@
-package com.empresa.tutorial_java.paso_valor.paso_arrays;
+package com.empresa.tutorial_java.equals;
 
-import java.util.Arrays;
+class CompareWithEquals {
 
-class PasoArrays {
+    public static void main(String... argv) {
 
-    public static void main(String[] args) {
+        Persona p = new Persona("Pepe");
+        Persona p1 = new Persona("Pepe");
+        Persona p2 = p;
 
-        int[] array1 = new int[5];
-        printArray(array1);
-        array1[0] = 0;  // innecesario ya que inicializa a 0 por defecto
+        System.out.println(p == p1); // false
+        System.out.println(p.equals(p1)); // false
+        System.out.println(p == p2); // true
+        System.out.println(p.equals(p2)); // true
 
-        int[] array2 = array1;  // dos variables apuntando al mismo array
-        int[] array3 = Arrays.copyOf(array1, array1.length); // dos arrays iguales
 
-        IncrementaArray(array1);
-        IncrementaArray(array2);
-        IncrementaArray(array3);
+        String s1 = "hola";
+        String s2 = s1;
+        String s3 = "hola";
+        String s4 = new String("hola"); // aunque el IDE sugiere no hacer explicita la instancia,...
 
-        printArray(array1);
-        printArray(array2);
-        printArray(array3);
-    }
+        System.out.println(s1 == s2); // true
+        System.out.println(s1 == s3); // true
+        System.out.println(s1 == s4); // false: referencias distintas
+        System.out.println(s1.equals(s2)); // true
+        System.out.println(s1.equals(s3));  // true
+        System.out.println(s1.equals(s4)); // true: referencias distintas a objetos iguales
 
-    private static void IncrementaArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = array[i] + 1;
-        }
-    }
-
-    private static void printArray(int[] array) {
-        Arrays.stream(array).forEach(System.out::print);
-        System.out.println();
     }
 
 }
